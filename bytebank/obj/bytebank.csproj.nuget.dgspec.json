@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\bytebank\\bytebank\\bytebank.csproj": {}
+    "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\byte-bank\\bytebank\\bytebank.csproj": {}
   },
   "projects": {
-    "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\bytebank\\bytebank\\bytebank.csproj": {
+    "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\byte-bank\\bytebank\\bytebank.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\bytebank\\bytebank\\bytebank.csproj",
+        "projectUniqueName": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\byte-bank\\bytebank\\bytebank.csproj",
         "projectName": "bytebank",
-        "projectPath": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\bytebank\\bytebank\\bytebank.csproj",
+        "projectPath": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\byte-bank\\bytebank\\bytebank.csproj",
         "packagesPath": "C:\\Users\\Patrick\\.nuget\\packages\\",
-        "outputPath": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\bytebank\\bytebank\\obj\\",
+        "outputPath": "E:\\DOWNLOADS HD\\PROGRAMAÇÃO\\ESTUDOS E CURSOS\\ALURA\\.NET\\POO\\byte-bank\\bytebank\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Patrick\\AppData\\Roaming\\NuGet\\NuGet.Config",

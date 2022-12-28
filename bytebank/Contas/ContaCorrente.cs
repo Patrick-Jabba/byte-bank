@@ -1,4 +1,5 @@
 ﻿using bytebank.Clientes;
+using bytebank.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,9 @@ namespace bytebank.Contas
                 _agencia = value;
             }
         }
-        public int Numero { get; set; }
+        public int Numero { get; }
 
-        private double _saldo;
+        private double _saldo = 100;
 
         public double Saldo
         {
@@ -54,6 +55,15 @@ namespace bytebank.Contas
 
         public ContaCorrente(int agencia, int numero)
         {
+            if(agencia <= 0)
+            {
+                throw new ArgumentException("O argumento agencia deve ser maior que 0", nameof(agencia));
+            }
+            if(numero <= 0)
+            {
+                throw new ArgumentException("O argumento numero deve ser maior que 0", nameof(numero));
+            }
+
             Agencia = agencia;
             Numero = numero;
             
@@ -62,14 +72,18 @@ namespace bytebank.Contas
             TaxaOperacao = 30 / TotalDeContasCriadas;
         }
 
-        public bool Sacar(double valor)
+        public void Sacar(double valor)
         {
+            if(valor <= 0)
+            {
+                throw new ArgumentException("O valor de saque não pode ser inferior ou igual a 0", nameof(valor));
+            }
             if(_saldo < valor)
             {
-                return false;
+                throw new SaldoInsuficienteException(_saldo, valor);
             }
             _saldo -= valor;
-            return true;
+            
         }
 
         public void Depositar(double valor)
@@ -83,7 +97,7 @@ namespace bytebank.Contas
             {
                 return false;
             }
-            _saldo -= valor;
+            Sacar(valor);
             contaDestino.Depositar(valor);
             return true;
         }

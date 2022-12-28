@@ -1,4 +1,5 @@
 ﻿using bytebank.Contas;
+using bytebank.Exceptions;
 using bytebank.Funcionarios;
 using bytebank.Parceria;
 using bytebank.SistemaInterno;
@@ -85,7 +86,24 @@ using bytebank.Utils;
 //}
 #endregion
 
-ContaCorrente conta = new ContaCorrente(74890, 87123);
+try
+{
+    ContaCorrente conta = new ContaCorrente(0, 12);
+    conta.Depositar(50);
+    Console.WriteLine(conta.Saldo);
+    conta.Sacar(500);
+    Console.WriteLine(conta.Saldo);
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Erro no parâmetro: {ex.ParamName}");
+}
+catch (SaldoInsuficienteException ex)
+{
+    Console.WriteLine(ex.Message);
+    Console.WriteLine($"Exceção do tipo SaldoInusificienteException");
+}
 
 Console.WriteLine(ContaCorrente.TaxaOperacao);
 
