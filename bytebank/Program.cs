@@ -1,6 +1,7 @@
 ﻿using bytebank.Contas;
 using bytebank.Exceptions;
 using bytebank.Funcionarios;
+using bytebank.LeitorDeArquivo;
 using bytebank.Parceria;
 using bytebank.SistemaInterno;
 using bytebank.Utils;
@@ -86,25 +87,66 @@ using bytebank.Utils;
 //}
 #endregion
 
-try
-{
-    ContaCorrente conta = new ContaCorrente(0, 12);
-    conta.Depositar(50);
-    Console.WriteLine(conta.Saldo);
-    conta.Sacar(500);
-    Console.WriteLine(conta.Saldo);
-}
-catch (ArgumentException ex)
-{
-    Console.WriteLine(ex.Message);
-    Console.WriteLine($"Erro no parâmetro: {ex.ParamName}");
-}
-catch (SaldoInsuficienteException ex)
-{
-    Console.WriteLine(ex.Message);
-    Console.WriteLine($"Exceção do tipo SaldoInusificienteException");
-}
+//try
+//{
+//    ContaCorrente conta = new ContaCorrente(32, 1245);
+//    ContaCorrente conta2 = new ContaCorrente(32, 54321);
 
-Console.WriteLine(ContaCorrente.TaxaOperacao);
+//    conta.Depositar(50);
+//    conta.Sacar(500);
+//    conta.Transferir(100, conta2);
+//    Console.WriteLine(conta.Saldo);
+//    Console.WriteLine(conta2.Saldo);
+
+//}
+//catch (ArgumentException ex)
+//{
+//    Console.WriteLine($"Erro no parâmetro: {ex.ParamName}");
+//    //Console.WriteLine(ex.StackTrace);
+//    Console.WriteLine(ex.Message);
+//}
+//catch (SaldoInsuficienteException ex)
+//{
+//    Console.WriteLine($"Exceção do tipo SaldoInusificienteException");
+//    //Console.WriteLine(ex.StackTrace);
+//    Console.WriteLine(ex.Message);
+//}
+//catch (OperacaoFinanceiraException ex)
+//{
+//    Console.WriteLine($"Exceção do tipo SaldoInusificienteException");
+//    //Console.WriteLine(ex.StackTrace);
+//    Console.WriteLine(ex.InnerException.Message);
+//    Console.WriteLine(ex.Message);
+//}
+
+//Console.WriteLine(ContaCorrente.ContadorSaquesNaoPermitidos);
+//Console.WriteLine(ContaCorrente.ContadorTransferenciasNaoPermitidas);
+
+//Console.WriteLine(ContaCorrente.TaxaOperacao);
+
+CarregarContas();
+void CarregarContas()
+{
+    LeitorDeArquivo leitor = null;
+    try
+    {
+        leitor = new LeitorDeArquivo("contas.txt");
+        leitor.LerProximaLinha();
+        leitor.LerProximaLinha();
+        leitor.LerProximaLinha();
+    }
+    catch (IOException ex)
+    {
+        Console.WriteLine("Exceção do tipo IOException capturada");
+        Console.WriteLine(ex.Message);
+    }
+    finally
+    {
+        if (leitor != null)
+        {
+        leitor.Fechar();
+        }
+    }
+}
 
 

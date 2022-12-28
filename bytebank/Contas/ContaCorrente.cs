@@ -16,6 +16,9 @@ namespace bytebank.Contas
 
         public static int TotalDeContasCriadas { get; private set; }
 
+        public static int ContadorSaquesNaoPermitidos { get; private set; }
+        public static int ContadorTransferenciasNaoPermitidas { get; private set; }
+
         private int _agencia;
 
         public int Agencia
@@ -80,6 +83,7 @@ namespace bytebank.Contas
             }
             if(_saldo < valor)
             {
+                ContadorSaquesNaoPermitidos++;
                 throw new SaldoInsuficienteException(_saldo, valor);
             }
             _saldo -= valor;
@@ -93,11 +97,15 @@ namespace bytebank.Contas
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if(_saldo < valor)
+            try
             {
-                return false;
+                Sacar(valor);
             }
-            Sacar(valor);
+            catch (SaldoInsuficienteException ex) 
+            {
+                ContadorTransferenciasNaoPermitidas++;
+                throw new OperacaoFinanceiraException("Operação não realizada", ex);
+            }
             contaDestino.Depositar(valor);
             return true;
         }

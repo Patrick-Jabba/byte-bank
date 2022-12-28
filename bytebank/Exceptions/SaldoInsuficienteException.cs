@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bytebank.Exceptions
 {
-    public class SaldoInsuficienteException : Exception
+    public class SaldoInsuficienteException : OperacaoFinanceiraException
     {
         public SaldoInsuficienteException() { } 
 
@@ -16,10 +16,11 @@ namespace bytebank.Exceptions
         public double ValorSaque { get; }
 
         public SaldoInsuficienteException(double saldo, double valorSaque)
-            :this ($"Tentativa de saque no valor de R${valorSaque},00 com saldo atual de R${saldo},00 ")
+            :this ($"Tentativa de movimentação no valor de R${valorSaque},00 com saldo atual de R${saldo},00 ")
         {
             Saldo = saldo;
             ValorSaque = valorSaque;
-        }   
+        }
+        
     }
 }
